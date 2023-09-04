@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.container{
+  border-radius: 10px;
+  margin-top: 40px !important;
+  padding: 28px !important;
+  box-shadow: 1px 1px 1px 1px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: #e1dded;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.4;
+  color: #1f1f1f;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+.form-container {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+}
+.input-text {
+  flex: 8;
+  font-size: 14px;
+  padding: 12px 15px;
+  border: 1px solid #cecece;
+  outline: none;
+  font-weight: 400;
+  max-width: 80%;
+}
+.select-input {
+  flex: 3;
+  font-size: 14px;
+  padding: 12px 15px;
+  border: 1px solid #cecece;
+  outline: none;
+  font-weight: 400;
+}
+.input-text::placeholder {
+  color: #999;
+}
+.input-submit {
+  flex: 2;
+  border: none;
+  background: #038203;
+  color: #fff;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+  width: 20%;
+  outline: none;
+}
+
+.input-submit:disabled {
+  background: grey;
+ cursor: no-drop;
+}
+
+.todo-item {
+  list-style-type: none;
+  padding: 17px 0px;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  align-items: center;
+}
+.checked-tag, .assign-btn{
+  display: flex;
+  align-items: center;
+  width: 20%;
+  gap: 8px;
+}
+.assign-btn{
+  width: 30%;
+  justify-content: space-between;
+  gap: 8px;
+}
+.todo-heading{
+  width: 50%;
+}
+.todo-item input {
+  margin-right: 15px;
+}
+.todo-item button {
+  background: #d35e0f;
+  color: #fff;
+  border: 1px solid #d35e0f;
+  padding: 3px 7px;
+  cursor: pointer;
+  float: right;
+  outline: none;
+}
+.tag-item{
+  border-radius: 20px;
+  padding: 1.5px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+.home{
+  background: skyblue;
+  
+}
+.important{
+  background: #d94848;
+}
+.work{
+  background: darkgrey;
+}
+.morning{
+  background: #d4712f;
+}
+.completed-task{
+  margin-top: 50px;
+}
+.completed-task h2{
+  text-align: center;
+}
