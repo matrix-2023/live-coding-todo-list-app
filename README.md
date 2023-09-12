@@ -30,5 +30,7 @@ npm start
 
 You should see the app in your browser address bar at [http://localhost:3000](http://localhost:3000)
 
+Youtube Live coding round interview video recording : https://youtu.be/sZCu6xd93LM?si=THnrjLZYaMDgP_1J
+
 ![image](https://github.com/matrix-2023/live-coding-todo-list-app/assets/143998226/63355203-9e79-426d-9d04-ce8dfbca9aa7)
 
