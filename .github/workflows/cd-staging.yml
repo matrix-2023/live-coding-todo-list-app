@@ -26,9 +26,9 @@ jobs:
       run: npm run build
 
     - name: Deploy to Staging
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --exclude '*.html' --delete
+      run: |
+        npm install -g s3-sync-action
+        npx s3-sync-action --exclude '*.html' --delete
       env:
         AWS_S3_BUCKET: ${{ secrets.STAGING_AWS_S3_BUCKET }}
         AWS_REGION: ${{ secrets.STAGING_AWS_REGION }}
@@ -36,9 +36,9 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
 
     - name: Deploy HTML files to Staging
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.STAGING_AWS_REGION }}
-      run: aws s3 sync build/ s3://${{ secrets.STAGING_AWS_S3_BUCKET }}/
+      run: |
+        npm install -g aws-cli
+        aws configure set aws_access_key_id ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
+        aws configure set aws_secret_access_key ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
+        aws configure set region ${{ secrets.STAGING_AWS_REGION }}
+        aws s3 sync build/ s3://${{ secrets.STAGING_AWS_S3_BUCKET }}/
