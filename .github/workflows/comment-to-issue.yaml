@@ -1,0 +1,32 @@
+name: Comment on Issue
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check if issue contains "devops is the best"
+      run: |
+        if grep -i "devops is the best" $GITHUB_EVENT_PATH; then
+          echo "::set-output name=comment::Well said"
+        else
+          echo "::set-output name=comment::You should praise devops"
+        fi
+
+    - name: Add comment
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const comment = process.env.comment;
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment,
+          });
