@@ -1,0 +1,44 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build React app
+      run: npm run build
+
+    - name: Deploy to Staging
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --exclude '*.html' --delete
+      env:
+        AWS_S3_BUCKET: ${{ secrets.STAGING_AWS_S3_BUCKET }}
+        AWS_REGION: ${{ secrets.STAGING_AWS_REGION }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
+
+    - name: Deploy HTML files to Staging
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.STAGING_AWS_REGION }}
+      run: aws s3 sync build/ s3://${{ secrets.STAGING_AWS_S3_BUCKET }}/
