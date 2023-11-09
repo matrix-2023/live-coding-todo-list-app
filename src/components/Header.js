@@ -18,7 +18,7 @@ const Header = () => {
         Simple Todo App
       </h1>
       <p style={{ fontSize: "19px" }}>
-        Please add to-dos item(s) through the input field
+        Please add to-dos item(s) through the input field:
       </p>
     </header>
   );
